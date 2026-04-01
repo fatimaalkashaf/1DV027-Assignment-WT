@@ -1,0 +1,35 @@
+{
+  "name": "videogame-dashboard-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The OAuth server for the Video Game Sales dashboard, built with Node.js and Express.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "oauth",
+    "express",
+    "videogames",
+    "node.js",
+    "jwt",
+    "dashboard"
+  ],
+  "author": "Fatima Alkashaf <fa223ns@student.lnu.se>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^10.1.0",
+    "nodemon": "^3.1.14"
+  },
+  "engines": {
+    "node": ">=22.7.0"
+  }
+}
