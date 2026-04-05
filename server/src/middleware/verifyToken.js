@@ -1,5 +1,5 @@
 /**
- * @file auth.js
+ * @file verifyToken.js
  * @description The middleware for verifying the JWT tokens on protected routes.
 */
 
