@@ -14,19 +14,20 @@ import { config } from '../config/index.js'
  * @returns {Promise<string|null>} - The JWT token if the login succeeded, otherwise null.
  */
 const loginUser = async (username, password) => {
-  const mutation = `
-    mutation {
-      login(username: "${username}", password: ""${password}) {
-        token
-      }
-    }
-  `
-
   // Sends the request to the GraphQL API.
   const response = await fetch(config.api.url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: mutation })
+    body: JSON.stringify({ 
+      query: `
+        mutation Login($username: String!, $password: String!) {
+          login(username: $username, password: $password) {
+            token
+          }
+        }
+      `,
+      variables: { username, password }
+    })
   })
 
   const data = await response.json()
@@ -42,22 +43,24 @@ const loginUser = async (username, password) => {
  * @throws {Error} - If the registration fails.
  */
 const registerUser = async (username, password) => {
-  const mutation = `
-    mutation {
-      register(username: "${username}, password: "${password}") {
-        token
-      }
-    }
-  `
-
   // Sends the request to the GraphQL API.
   const response = await fetch(config.api.url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: mutation })
+    body: JSON.stringify({
+      query: `
+        mutation Register($username: String!, $password: String!) {
+          register(username: $username, password: $password) {
+            token
+          }
+        }
+      `,
+      variables: { username, password }
+    })
   })
 
   const data = await response.json()
+  console.log('Register response:', JSON.stringify(data, null, 2))
 
   if (!data.data?.register?.token) {
     throw new Error('Failed to register user with the API.')
