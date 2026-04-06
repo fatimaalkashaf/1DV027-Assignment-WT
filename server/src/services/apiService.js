@@ -18,7 +18,7 @@ const loginUser = async (username, password) => {
   const response = await fetch(config.api.url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       query: `
         mutation Login($username: String!, $password: String!) {
           login(username: $username, password: $password) {
