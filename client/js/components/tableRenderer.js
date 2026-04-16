@@ -35,6 +35,5 @@ const createTableRow = (game) => {
     <td>${truncateText(game.publisher, 30)}</td>
     <td>${game.globalSales}M</td>
   `
-
   return row
 }
