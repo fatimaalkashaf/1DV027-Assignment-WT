@@ -32,7 +32,7 @@ const createTableRow = (game) => {
     <td>${game.platform}</td>
     <td>${game.year || 'N/A'}</td>
     <td>${game.genre}</td>
-    <td>${truncateText(game.publisher, 30)}</td>
+    <td>${truncateText(game.publisher.name, 30)}</td>
     <td>${game.globalSales}M</td>
   `
   return row

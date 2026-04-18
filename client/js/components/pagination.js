@@ -25,8 +25,8 @@ const renderPagination = (containerId, currentPage, totalPages, onPageChange) =>
   const pageRange = getPageRange(currentPage, totalPages)
   pageRange.forEach((page) => {
     const button = createPageButton(page, true, () => onPageChange(page))
-    if (page === currentPage) {
-      button.classList.add('pagination-button-active')
+    if (Number(page) === Number(currentPage)) {
+      button.classList.add('pagination-button--active')
     }
     container.appendChild(button)
   })

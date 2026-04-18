@@ -27,11 +27,14 @@ const sendGraphQLRequest = async (query, variables = {}, token = null) => {
     body: JSON.stringify({ query, variables })
   })
 
+  const responseText = await response.text()
+  console.log('API raw response:', responseText)
+
   if (!response.ok) {
     throw new Error(`Network error: ${response.status}`)
   }
 
-  const result = await response.json()
+  const result = JSON.parse(responseText)
 
   if (result.errors) {
     throw new Error(result.errors[0].message)
@@ -51,15 +54,17 @@ const sendGraphQLRequest = async (query, variables = {}, token = null) => {
  */
 const fetchGames = async(page, limit, filters = {}, token) => {
   const query = `
-    query GetGames($page: Int, $limit: Int, $genre: String, $platform: String, $publisher: String) {
-      games(page: $page, limit: $limit, genre: $genre, platform: $platform, publisher: $publisher) {
+    query GetGames($offset: Int, $limit: Int, $genre: String, $platform: String) {
+      games(offset: $offset, limit: $limit, genre: $genre, platform: $platform) {
         games {
           id
           name
           platform
           year
           genre
-          publisher
+          publisher {
+            name
+          }
           naSales
           euSales
           jpSales
@@ -71,7 +76,12 @@ const fetchGames = async(page, limit, filters = {}, token) => {
     }
   `
 
-  return sendGraphQLRequest(query, { page, limit, ...filters }, token)
+  return sendGraphQLRequest(query, {
+    offset: (page - 1) * limit,
+    limit,
+    genre: filters.genre || undefined,
+    platform: filters.platform || undefined
+  }, token)
 }
 
 /**

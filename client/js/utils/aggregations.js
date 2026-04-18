@@ -26,30 +26,6 @@ const aggregateSalesByGenre = (games) => {
 }
 
 /**
- * Aggregates the games data by year and counts releases per year.
- *
- * @param {Array<object>} games - An array of game objects.
- * @returns {Array<object>} - An array of objects with year and count, sorted by year.
- */
-const aggregateReleaseByYear = (games) => {
-  const yearMap = {}
-
-  games.forEach((game) => {
-    if (!game.year) return
-    // Initializes year entry if it doesn't exist.
-    if (!yearMap[game.year]) {
-      yearMap[game.year] = 0
-    }
-    yearMap[game.year]++
-  })
-
-  // Converts map to array and sorts the in time order.
-  return Object.entries(yearMap)
-    .map(([year, count]) => ({ year, count }))
-    .sort((a, b) => a.year - b.year)
-}
-
-/**
  * Calculates the total regional sales across all games.
  *
  * @param {Array<object>} games - An array of game objects.
@@ -63,4 +39,30 @@ const aggregateRegionalSales = (games) => {
     jpSales: totals.jpSales + (game.jpSales || 0),
     otherSales: totals.otherSales + (game.otherSales || 0)
   }), { naSales: 0, euSales: 0, jpSales: 0, otherSales: 0 })
+}
+
+/**
+ * Aggregates release years from all platforms and count how many
+ * platforms released games in each year.
+ *
+ * @param {Array<object>} platforms - An array of platforms objects.
+ * @returns {Array<object>} - An array of objects with year and count, sorted by year.
+ */
+const aggregateYearsFromPlatforms = (platforms) => {
+  const yearMap = {}
+
+  platforms.forEach((platform) => {
+    platform.releaseYears.forEach((year) => {
+      // Initializes the year entry if it doesn't exist.
+      if (!yearMap[year]) {
+        yearMap[year] = 0
+      }
+      yearMap[year]++
+    })
+  })
+
+  // Converts map to array and sorts it in time order.
+  return Object.entries(yearMap)
+    .map(([year, count]) => ({ year, count }))
+    .sort((a, b) => a.year - b.year)
 }

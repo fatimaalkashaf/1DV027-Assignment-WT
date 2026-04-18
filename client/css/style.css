@@ -1,0 +1,273 @@
+/* ========================
+   Global styles
+   ======================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-background: black;
+  --color-surface: darkgray;
+  --color-primary: blue;
+  --color-primary-hover: darkblue;
+  --color-text: white;
+  --color-text-muted: lightgray;
+  --color-error: red;
+  --color-border: gray;
+  --border-radius: 8px
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+/* ========================
+   Login page
+   ======================== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 3rem 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.login-description {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.login-button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ========================
+   Navbar
+   ======================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 2rem;
+}
+
+.navbar-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.logout-button {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ========================
+   Dashboard
+   ======================== */
+.dashboard {
+  padding: 2rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+/* ========================
+   Stats cards
+   ======================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+/* ========================
+   Charts
+   ======================== */
+.chart-container {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  max-width: 700px;
+}
+
+/* ========================
+   Filters
+   ======================== */
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  padding: 0.5rem 1rem;
+}
+
+.filter-button {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.filter-button--secondary {
+  background-color: gray;
+}
+
+.filter-button--secondary:hover {
+  background-color: darkgray;
+}
+
+/* ========================
+   Table
+   ======================== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.games-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.games-table th,
+.games-table td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.games-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* ========================
+   Pagination
+   ======================== */
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.pagination-button {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.pagination-button:hover:not(:disabled):not(.pagination-button--active) {
+  background-color: var(--color-primary);
+}
+
+.pagination-button--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  cursor: default;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================
+   Utility classes
+   ======================== */
+.hidden {
+  display: none;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.loading-indicator {
+  color: var(--color-text-muted);
+  margin: 1rem 0;
+}

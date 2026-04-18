@@ -54,7 +54,7 @@ const loadDashboardData = async (token) => {
     ])
 
     renderOverviewStats(gamesData, publishersData, platformsData)
-    renderAllCharts(gamesData.games.games)
+    renderAllCharts(gamesData.games.games, platformsData)
     renderGamesTable(gamesData.games.games)
     renderPagination(
       'pagination-container',
@@ -87,14 +87,14 @@ const renderOverviewStats = (gamesData, publishersData, platformsData) => {
  *
  * @param {Array<object>} games - An array of game objects.
  */
-const renderAllCharts = (games) => {
+const renderAllCharts = (games, platformsData) => {
   Object.values(activeCharts).forEach((chart) => chart.destroy())
   activeCharts = {}
 
   // Creates each chart with the aggregated data.
   activeCharts.genreSales = createGenreSalesChart('genre-sales-chart', aggregateSalesByGenre(games))
   activeCharts.regionalSales = createRegionalSalesChart('regional-sales-chart', aggregateRegionalSales(games))
-  activeCharts.releasesPerYear = createReleasesPerYearChart('releases-year-chart', aggregateReleaseByYear(games))
+  activeCharts.releasesPerYear = createReleasesPerYearChart('releases-year-chart', aggregateYearsFromPlatforms(platformsData.platforms.platforms))
 }
 
 /**
@@ -143,8 +143,7 @@ const applyFilters = async () => {
   currentPage = 1
   currentFilters = {
     genre: document.getElementById('filter-genre').value || undefined,
-    platform: document.getElementById('filter-platform').value || undefined,
-    publisher: document.getElementById('filter-publisher').value || undefined
+    platform: document.getElementById('filter-platform').value || undefined
   }
 
   const loadingIndicator = document.getElementById('loading-indicator')
@@ -174,7 +173,6 @@ const applyFilters = async () => {
 const clearFilters = async () => {
   document.getElementById('filter-genre').value = ''
   document.getElementById('filter-platform').value = ''
-  document.getElementById('filter-publisher').value = ''
   currentFilters = {}
   currentPage = 1
 
