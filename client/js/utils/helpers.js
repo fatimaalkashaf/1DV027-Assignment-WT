@@ -55,3 +55,20 @@ const showElement = (element) => {
 const hideElement = (element) => {
   element.classList.add('hidden')
 }
+
+/**
+ * Returns a debounced version of the given function.
+ *
+ * @param {Function} func - The function to debounce.
+ * @param {number} waitMs - The number of milliseconds to wait.
+ * @returns {Function} - The debounced function.
+ */
+const debounce = (func, waitMs) => {
+  let timeoutId
+
+  return (...args) => {
+    // Clears the previous timer and starts a new one.
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => func(...args), waitMs)
+  }
+}

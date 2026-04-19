@@ -128,6 +128,12 @@ const onPageChange = async (page, token) => {
  * Sets up event listeners for the filter inputs and buttons.
  */
 const initFilters = () => {
+  const debouncedApplyFilters = debounce(applyFilters, 400)
+
+  // Applies filters automatically as the user types.
+  document.getElementById('filter-genre').addEventListener('input', debouncedApplyFilters)
+  document.getElementById('filter-platform').addEventListener('input', debouncedApplyFilters)
+
   document.getElementById('apply-filters').addEventListener('click', applyFilters)
   document.getElementById('clear-filters').addEventListener('click', clearFilters)
 }

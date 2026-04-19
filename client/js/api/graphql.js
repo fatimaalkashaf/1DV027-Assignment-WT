@@ -28,15 +28,26 @@ const sendGraphQLRequest = async (query, variables = {}, token = null) => {
   })
 
   const responseText = await response.text()
-  console.log('API raw response:', responseText)
 
   if (!response.ok) {
+    // If token is invalid or expired, clears it and redirects to login.
+    if (response.status === 401) {
+      removeToken()
+      window.location.href = 'index.html'
+      return
+    }
     throw new Error(`Network error: ${response.status}`)
   }
 
   const result = JSON.parse(responseText)
 
   if (result.errors) {
+    // If the token is expired, the API returns an authentication error.
+    if (result.errors[0].message.toLowerCase().includes('auth')) {
+      removeToken()
+      window.location.href = 'index.html'
+      return
+    }
     throw new Error(result.errors[0].message)
   }
 
