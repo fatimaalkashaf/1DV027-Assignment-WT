@@ -124,7 +124,7 @@ const createReleasesPerYearChart = (canvasId, data) => {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Number of releases'
+            text: 'Active Platforms'
           }
         }
       }

@@ -63,7 +63,7 @@ const sendGraphQLRequest = async (query, variables = {}, token = null) => {
  * @param {string} token - The JWT token for authentication.
  * @returns {Promise<object>} - The games list and total count.
  */
-const fetchGames = async(page, limit, filters = {}, token) => {
+const fetchGames = async (page, limit, filters = {}, token) => {
   const query = `
     query GetGames($offset: Int, $limit: Int, $genre: String, $platform: String) {
       games(offset: $offset, limit: $limit, genre: $genre, platform: $platform) {
