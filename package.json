@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "description": "The OAuth server for the Video Game Sales dashboard, built with Node.js and Express.",
-  "main": "src/server.js",
+  "main": "server/src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "lint": "eslint ."
+    "start": "node server/src/server.js",
+    "dev": "nodemon server/src/server.js",
+    "lint": "eslint server/src"
   },
   "keywords": [
     "oauth",
