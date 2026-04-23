@@ -6,10 +6,15 @@
 
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { config } from './config/index.js'
 import authRoutes from './routes/auth.js'
 
 const app = express()
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 /**
  * Configures CORS to only allow requests from the client application.
@@ -35,6 +40,9 @@ app.use((req, res, next) => {
   }
   next()
 })
+
+// Serves the client folder as static files.
+app.use(express.static(path.join(__dirname, '../../client')))
 
 // Attaches the authentication routes.
 app.use('/auth', authRoutes)
