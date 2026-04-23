@@ -41,7 +41,6 @@ app.use((req, res, next) => {
   next()
 })
 
-console.log('Static path:', path.join(__dirname, '../../client'))
 // Serves the client folder as static files.
 app.use(express.static(path.join(__dirname, '../../client')))
 
