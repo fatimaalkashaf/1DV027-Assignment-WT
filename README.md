@@ -14,7 +14,7 @@ Create a functional, visually engaging, and *interactive* data visualization web
 
 *Provide the link to your publicly accessible application:*
 
-> URL: ...
+> URL: 1dv027-assignment-wt-production.up.railway.app
 
 ## Requirements
 
@@ -39,9 +39,9 @@ See [all requirements in Issues](../../issues/). Close issues as you implement t
 | Source code documentation | [#4](../../issues/4) | :✅: |
 | Coding standard | [#5](../../issues/5) | :✅: |
 | Examiner can follow the creation process | [#6](../../issues/6) | :✅: |
-| Publicly accessible over the internet | [#7](../../issues/7) | :white_large_square: |
+| Publicly accessible over the internet | [#7](../../issues/7) | :✅: |
 | Keys and tokens handled correctly | [#8](../../issues/8) | :✅: |
-| Complete assignment report with correct links | [#9](../../issues/9) | :white_large_square: |
+| Complete assignment report with correct links | [#9](../../issues/9) | :✅: |
 
 ### VG — AI/ML Feature (optional)
 
